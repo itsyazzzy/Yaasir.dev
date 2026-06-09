@@ -1,0 +1,93 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map(project => ({
+    params: { slug: project.id.replace(/\.md$/, '') },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<BaseLayout
+  title={`${project.data.title} — Yasir Hassan`}
+  description={project.data.description}
+  image={project.data.image}
+>
+  <div class="px-8 mx-auto max-w-3xl pt-32 pb-24">
+    <!-- Back -->
+    <a href="/projects/"
+       class="inline-flex items-center gap-2 text-xs font-mono text-[var(--color-base-600)]
+              hover:text-[var(--color-accent)] transition-colors mb-12 link-underline">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" class="size-3 rotate-180">
+        <path d="M184.49,136.49l-80,80a12,12,0,0,1-17-17L159,128,87.51,56.49a12,12,0,1,1,17-17l80,80A12,12,0,0,1,184.49,136.49Z"/>
+      </svg>
+      All projects
+    </a>
+
+    <!-- Header -->
+    <div class="mb-10">
+      <div class="flex items-center gap-4 mb-6">
+        {project.data.image && (
+          <div class="size-16 rounded-2xl overflow-hidden bg-[var(--color-base-900)] ring-1 ring-[var(--color-border-subtle)] flex items-center justify-center p-3">
+            <img src={project.data.image} alt={project.data.title} class="size-full object-contain" />
+          </div>
+        )}
+        <div>
+          <h1 class="text-3xl sm:text-4xl font-medium text-[var(--color-text-heading)] leading-tight">
+            {project.data.title}
+          </h1>
+          <div class="flex flex-wrap gap-2 mt-2">
+            {project.data.tags.map(tag => (
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full
+                           bg-[var(--color-tag-bg)] text-[var(--color-text-muted)]
+                           ring-1 ring-[var(--color-tag-border)]">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <p class="text-base text-[var(--color-text-body)] leading-relaxed max-w-xl mt-4">
+        {project.data.description}
+      </p>
+
+      <!-- Links -->
+      <div class="flex flex-wrap gap-3 mt-6">
+        {project.data.url && (
+          <a href={project.data.url} target="_blank" rel="noopener"
+             class="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-medium
+                    bg-[var(--color-accent)] text-white
+                    hover:bg-[var(--color-accent-dim)]
+                    shadow-[0_2px_16px_rgba(30,144,255,0.3)]
+                    transition-all duration-200">
+            Live site ↗
+          </a>
+        )}
+        {project.data.github && (
+          <a href={project.data.github} target="_blank" rel="noopener"
+             class="btn-secondary inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-medium
+                    border border-[var(--color-base-800)] text-[var(--color-base-400)]
+                    hover:text-[var(--color-base-50)] hover:border-[var(--color-accent)]/40
+                    transition-all duration-200">
+            GitHub ↗
+          </a>
+        )}
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="border-t border-[var(--color-border-subtle)] mb-10"></div>
+
+    <!-- Content -->
+    <div class="prose max-w-none">
+      <Content />
+    </div>
+  </div>
+</BaseLayout>

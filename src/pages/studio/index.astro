@@ -1,0 +1,67 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { profile } from '@/data/site';
+---
+
+<BaseLayout
+  title="Studio — Yasir Hassan"
+  description="Available for freelance work. I help teams ship products — from architecture to production."
+>
+  <div class="px-8 mx-auto max-w-3xl pt-32 pb-24">
+
+    <!-- Availability badge -->
+    <div class="flex items-center gap-2 mb-12">
+      <span class="online-dot size-2 rounded-full bg-[var(--color-accent)]"></span>
+      <span class="text-xs font-mono text-[var(--color-accent)]">Available · {profile.availability}</span>
+    </div>
+
+    <!-- Heading -->
+    <h1 class="font-display italic text-4xl sm:text-5xl md:text-6xl text-[var(--color-text-heading)] mb-6 text-balance leading-tight">
+      Let's build something real.
+    </h1>
+    <p class="text-base text-[var(--color-text-body)] max-w-xl leading-relaxed mb-12">
+      I'm a Software Engineer based in Somaliland. I help founders, small teams,
+      and organizations ship products that solve actual problems.
+    </p>
+
+    <!-- What I do -->
+    <div class="border-t border-[var(--color-border-subtle)] pt-12 mb-16">
+      <h2 class="font-display italic text-2xl text-[var(--color-text-heading)] mb-8">What I do</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {[
+          { title: 'Software Engineering', desc: 'End-to-end web applications and systems — from database design to polished interfaces using Next.js, Astro, Node, PostgreSQL.' },
+          { title: 'Backend & Systems Architecture', desc: 'Designing secure APIs, database modeling, background queues, and deployment strategies.' },
+          { title: 'API Integration', desc: 'REST APIs, authentication systems, and connecting third-party services.' },
+          { title: 'UI / Frontend Development', desc: 'Clean, accessible, and highly responsive user interfaces. Fast by default, and interactive.' },
+        ].map(item => (
+          <div class="gradient-card rounded-2xl p-6 ring-1 ring-[var(--color-base-800)]">
+            <h3 class="text-sm font-medium text-[var(--color-text-heading)] mb-2">{item.title}</h3>
+            <p class="text-xs text-[var(--color-text-body)] leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="border-t border-[var(--color-border-subtle)] pt-12 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+      <div>
+        <p class="text-sm text-[var(--color-text-body)]">Ready to work together?</p>
+        <p class="text-xs font-mono text-[var(--color-base-600)] mt-1">{profile.location} · Remote-friendly</p>
+      </div>
+      <a
+        href={`mailto:${profile.email}`}
+        class="ml-auto inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium
+               bg-[var(--color-accent)] text-white
+               hover:bg-[var(--color-accent-dim)]
+               shadow-[0_4px_24px_rgba(30,144,255,0.3)]
+               hover:shadow-[0_4px_32px_rgba(30,144,255,0.45)]
+               transition-all duration-300 whitespace-nowrap"
+      >
+        {profile.email}
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" class="size-3.5">
+          <path d="M184.49,136.49l-80,80a12,12,0,0,1-17-17L159,128,87.51,56.49a12,12,0,1,1,17-17l80,80A12,12,0,0,1,184.49,136.49Z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</BaseLayout>

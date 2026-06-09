@@ -1,0 +1,79 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.id.replace(/\.md$/, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formattedDate = post.data.date.toLocaleDateString('en', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+});
+---
+
+<BaseLayout
+  title={`${post.data.title} — Yasir Hassan`}
+  description={post.data.description}
+>
+  <div class="px-8 mx-auto max-w-3xl pt-32 pb-24">
+    <!-- Back -->
+    <a href="/blog/"
+       class="inline-flex items-center gap-2 text-xs font-mono text-[var(--color-base-600)]
+              hover:text-[var(--color-accent)] transition-colors mb-12 link-underline">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" class="size-3 rotate-180">
+        <path d="M184.49,136.49l-80,80a12,12,0,0,1-17-17L159,128,87.51,56.49a12,12,0,1,1,17-17l80,80A12,12,0,0,1,184.49,136.49Z"/>
+      </svg>
+      All posts
+    </a>
+
+    <!-- Header -->
+    <div class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <time class="text-xs font-mono text-[var(--color-base-500)]"
+              datetime={post.data.date.toISOString()}>
+          {formattedDate}
+        </time>
+        {post.data.readTime && (
+          <>
+            <span class="text-[var(--color-base-800)]">·</span>
+            <span class="text-xs font-mono text-[var(--color-base-500)]">{post.data.readTime}</span>
+          </>
+        )}
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-medium text-[var(--color-text-heading)] mb-4 leading-tight text-balance">
+        {post.data.title}
+      </h1>
+      <p class="text-base text-[var(--color-text-body)] leading-relaxed max-w-xl">
+        {post.data.description}
+      </p>
+
+      <div class="flex flex-wrap gap-1.5 mt-4">
+        {post.data.tags.map(tag => (
+          <span class="text-xs font-mono px-2 py-0.5 rounded-full
+                       bg-[var(--color-tag-bg)] text-[var(--color-text-muted)]
+                       ring-1 ring-[var(--color-tag-border)]">
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="border-t border-[var(--color-border-subtle)] mb-10"></div>
+
+    <!-- Content — proper prose -->
+    <div class="prose max-w-none">
+      <Content />
+    </div>
+  </div>
+</BaseLayout>

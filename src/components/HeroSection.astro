@@ -1,0 +1,117 @@
+---
+import { profile } from '@/data/site';
+
+// Marquee items
+const marqueeItems = [
+  'Telesom', 'Ardaykaab', 'OpenClaw', 'Samewade', 'Xalkadoon',
+  'Telesom', 'Ardaykaab', 'OpenClaw', 'Samewade', 'Xalkadoon',
+];
+---
+
+<section class="relative overflow-hidden pt-36 pb-24 px-8">
+  <div class="mx-auto max-w-3xl">
+
+    <!-- Hire me pill link -->
+    <div class="flex justify-center mb-10">
+      <a
+        href="/studio/"
+        class="inline-flex items-center gap-2 text-xs font-mono
+               text-[var(--color-base-400)] hover:text-[var(--color-accent)]
+               transition-colors duration-200 link-underline"
+      >
+        <span class="online-dot size-1.5 rounded-full bg-[var(--color-accent)]"></span>
+        Hire me · {profile.availability}
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" class="size-3">
+          <path d="M184.49,136.49l-80,80a12,12,0,0,1-17-17L159,128,87.51,56.49a12,12,0,1,1,17-17l80,80A12,12,0,0,1,184.49,136.49Z"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Hero heading -->
+    <div class="text-center">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium
+                 flex flex-wrap items-center justify-center gap-x-3 gap-y-2
+                 text-[var(--color-text-heading)]">
+        Hi, I'm {profile.name.split(' ')[0]}
+
+        <!-- Real avatar photo (Muuse inline style) -->
+        <span class="relative inline-block flex-shrink-0">
+          <span class="size-12 md:size-16 rounded-xl overflow-hidden
+                       ring-2 ring-[var(--color-accent)]/30
+                       hover:ring-[var(--color-accent)]/60
+                       hover:scale-125 hover:rotate-6
+                       transition-all duration-300 ease-in-out
+                       inline-flex items-center justify-center
+                       bg-[var(--color-base-800)]">
+            <img
+              src={profile.avatar}
+              alt={`${profile.name} avatar`}
+              class="size-full object-cover object-top"
+            />
+          </span>
+          <!-- Online dot -->
+          <span class="online-dot absolute -bottom-0.5 -right-0.5 size-3 rounded-full
+                       bg-[var(--color-accent)] border-2 border-[var(--color-base-950)]
+                       shadow-[0_0_8px_var(--color-accent)]"></span>
+        </span>
+        ,
+      </h1>
+
+      <!-- Serif italic role (Flaco) -->
+      <p class="font-display italic text-4xl sm:text-5xl md:text-6xl lg:text-7xl
+                text-[var(--color-base-500)] mt-1 leading-tight">
+        {profile.role.toLowerCase()}.
+      </p>
+
+      <!-- Tagline -->
+      <p class="mt-6 text-base sm:text-lg text-[var(--color-base-500)] max-w-xl mx-auto leading-relaxed text-balance">
+        {profile.intro}
+      </p>
+
+      <!-- CTA buttons -->
+      <div class="mt-8 flex items-center justify-center gap-3">
+        <a
+          href="/projects/"
+          class="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium
+                 bg-[var(--color-accent)] text-white
+                 hover:bg-[var(--color-accent-dim)]
+                 shadow-[0_4px_24px_rgba(30,144,255,0.3)]
+                 hover:shadow-[0_4px_32px_rgba(30,144,255,0.45)]
+                 transition-all duration-300"
+        >
+          View work
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" class="size-3.5">
+            <path d="M184.49,136.49l-80,80a12,12,0,0,1-17-17L159,128,87.51,56.49a12,12,0,1,1,17-17l80,80A12,12,0,0,1,184.49,136.49Z"/>
+          </svg>
+        </a>
+        <a
+          href="mailto:sir@yaasir.dev"
+          class="btn-secondary inline-flex items-center rounded-full px-5 py-2.5 text-sm font-medium
+                 border border-[var(--color-base-700)]
+                 text-[var(--color-base-400)] hover:text-[var(--color-base-50)]
+                 hover:border-[var(--color-accent)]/40
+                 transition-all duration-300"
+        >
+          Get in touch
+        </a>
+      </div>
+    </div>
+
+    <!-- Marquee -->
+    <div class="relative mt-16 overflow-hidden">
+      <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-24
+                  bg-gradient-to-r from-[var(--color-bg-fade)] to-transparent"></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-24
+                  bg-gradient-to-l from-[var(--color-bg-fade)] to-transparent"></div>
+
+      <div class="flex animate-marquee gap-8 whitespace-nowrap">
+        {marqueeItems.map((name, i) => (
+          <span class="text-sm font-mono text-[var(--color-base-700)] select-none px-4 flex items-center gap-2">
+            <span class="size-1 rounded-full bg-[var(--color-base-800)] inline-block"></span>
+            {name}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

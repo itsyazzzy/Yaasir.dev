@@ -1,0 +1,65 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  date: Date;
+  readTime?: string;
+  tags?: string[];
+}
+
+const { title, description, href, date, readTime, tags = [] } = Astro.props;
+
+const formattedDate = date.toLocaleDateString('en', { month: 'long', day: 'numeric', year: 'numeric' });
+---
+
+<article class="relative group gradient-card rounded-3xl overflow-hidden
+                ring-1 ring-[var(--color-base-800)] p-6 sm:p-8
+                hover:ring-[var(--color-base-700)] hover:shadow-[var(--glow-subtle)]
+                transition-all duration-300 grid sm:grid-cols-[1fr_auto] gap-6 items-start">
+
+  <a href={href} title={title} class="absolute inset-0 z-10" aria-label={`Read: ${title}`}></a>
+
+  <!-- Content -->
+  <div class="flex flex-col gap-3">
+    <!-- Meta -->
+    <p class="text-xs font-mono text-[var(--color-base-600)]">
+      <time datetime={date.toISOString()}>{formattedDate}</time>
+      {readTime && <><span class="mx-1.5">·</span><span>{readTime}</span></>}
+    </p>
+
+    <!-- Title -->
+    <h3 class="text-base font-medium text-[var(--color-text-heading)] group-hover:text-[var(--color-accent)]
+               transition-colors duration-200 text-balance leading-snug">
+      {title}
+    </h3>
+
+    <!-- Description -->
+    <p class="text-sm text-[var(--color-text-body)] leading-relaxed text-balance line-clamp-2">
+      {description}
+    </p>
+
+    <!-- Tags -->
+    {tags.length > 0 && (
+      <div class="flex flex-wrap gap-1.5 mt-1">
+        {tags.slice(0, 3).map(tag => (
+          <span class="text-xs font-mono px-2 py-0.5 rounded-full
+                       bg-[var(--color-tag-bg)] text-[var(--color-text-muted)]
+                       ring-1 ring-[var(--color-tag-border)]">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+  </div>
+
+  <!-- Arrow icon -->
+  <div class="shrink-0 size-8 rounded-full flex items-center justify-center
+              border border-[var(--color-base-800)] text-[var(--color-base-600)]
+              group-hover:border-[var(--color-accent)] group-hover:text-[var(--color-accent)]
+              group-hover:translate-x-1 transition-all duration-300">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" class="size-3.5">
+      <path d="M184.49,136.49l-80,80a12,12,0,0,1-17-17L159,128,87.51,56.49a12,12,0,1,1,17-17l80,80A12,12,0,0,1,184.49,136.49Z"/>
+    </svg>
+  </div>
+</article>

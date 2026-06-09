@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogCard from '@/components/BlogCard.astro';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout
+  title="Blog — Yasir Hassan"
+  description="Writing about web development, software engineering, and building things for real communities."
+>
+  <div class="px-8 mx-auto max-w-3xl pt-32 pb-24">
+    <div class="mb-12">
+      <h1 class="font-display italic text-4xl sm:text-5xl text-[var(--color-text-heading)]">Writing</h1>
+      <p class="mt-3 text-sm text-[var(--color-base-500)] max-w-lg leading-relaxed">
+        Thoughts on web development, software engineering, and building in Somaliland.
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-3">
+      {posts.map(post => (
+        <BlogCard
+          title={post.data.title}
+          description={post.data.description}
+          href={`/blog/${post.id.replace(/\.md$/, '')}/`}
+          date={post.data.date}
+          readTime={post.data.readTime}
+          tags={post.data.tags}
+        />
+      ))}
+    </div>
+  </div>
+</BaseLayout>

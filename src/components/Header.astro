@@ -1,0 +1,185 @@
+---
+// Pill-style floating header — Muuse + Flaco fusion
+const navLinks = [
+  { label: 'Projects', href: '/projects/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'Stack', href: '/stack/' },
+];
+
+const menuLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Projects', href: '/projects/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'Stack', href: '/stack/' },
+  { label: 'Studio', href: '/studio/' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="fixed top-0 inset-x-0 z-40 flex justify-center pt-4 px-4">
+  <!-- Pill nav (Muuse style) -->
+  <nav class="pill-nav flex items-center gap-1 px-3 py-2 shadow-lg">
+    <!-- Logo / Name -->
+    <a
+      href="/"
+      aria-label="Home"
+      class="text-sm font-semibold text-[var(--color-base-50)] mr-2 px-2 py-1
+             hover:text-[var(--color-accent)] transition-colors duration-200
+             body.light:text-[var(--color-base-900)]"
+    >
+      Yasir
+    </a>
+
+    <div class="w-px h-4 bg-[var(--color-base-800)]"></div>
+
+    <!-- Nav links -->
+    {navLinks.map(link => (
+      <a
+        href={link.href}
+        class={`text-xs px-3 py-1.5 rounded-full transition-all duration-200
+          ${currentPath.startsWith(link.href)
+            ? 'active-nav bg-[var(--color-base-800)] text-[var(--color-base-50)]'
+            : 'text-[var(--color-base-400)] hover:text-[var(--color-base-50)] hover:bg-[var(--color-base-900)]'
+          }`}
+      >
+        {link.label}
+      </a>
+    ))}
+
+    <!-- Hire me availability dot -->
+    <a
+      href="/studio/"
+      class="ml-2 flex items-center gap-1.5 text-xs text-[var(--color-base-400)]
+             hover:text-[var(--color-accent)] transition-colors duration-200 px-2"
+    >
+      <span class="online-dot size-1.5 rounded-full bg-[var(--color-accent)] block"></span>
+      <span class="hidden sm:block">Hire me</span>
+    </a>
+
+    <!-- Hamburger (menu toggle) -->
+    <button
+      id="menu-toggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+      class="ml-1 size-8 rounded-full flex items-center justify-center
+             bg-[var(--color-base-800)] text-[var(--color-base-400)]
+             hover:text-[var(--color-base-50)] hover:bg-[var(--color-base-700)]
+             transition-all duration-200"
+    >
+      <svg id="icon-ham" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" class="size-4">
+        <path d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"/>
+      </svg>
+      <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" class="size-4 hidden">
+        <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/>
+      </svg>
+    </button>
+  </nav>
+</header>
+
+<!-- Full-screen overlay menu (Flaco style + Muuse dark) -->
+<div
+  id="menu-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Navigation menu"
+  class="fixed inset-0 z-50 bg-[var(--color-base-950)]/95 backdrop-blur-xl"
+>
+  <div class="relative h-full flex flex-col px-8 py-6 max-w-3xl mx-auto">
+    <!-- Close button -->
+    <div class="flex justify-end">
+      <button
+        id="menu-close"
+        aria-label="Close menu"
+        class="size-10 rounded-full flex items-center justify-center
+               bg-[var(--color-base-900)] border border-[var(--color-base-800)]
+               text-[var(--color-base-400)] hover:text-[var(--color-base-50)]
+               transition-all duration-200"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" class="size-5">
+          <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Nav links — right aligned, large, serif italic (Flaco) -->
+    <nav class="flex flex-col mt-8 gap-y-1">
+      {menuLinks.map((link, i) => (
+        <div class="flex justify-end">
+          <a
+            href={link.href}
+            style={`transition-delay: ${i * 60}ms`}
+            class={`font-display italic text-4xl sm:text-5xl md:text-6xl
+                    link-underline block text-right
+                    ${currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
+                      ? 'text-[var(--color-accent)]'
+                      : 'text-[var(--color-base-200)] hover:text-[var(--color-base-50)]'
+                    }`}
+          >
+            {link.label}
+          </a>
+        </div>
+      ))}
+    </nav>
+
+    <!-- Footer social links inside menu -->
+    <div class="mt-auto flex items-center gap-4">
+      <a href="https://github.com/sirrryasir" target="_blank" rel="noopener"
+         class="text-xs text-[var(--color-base-500)] hover:text-[var(--color-base-200)] transition-colors font-mono">
+        GitHub
+      </a>
+      <a href="https://twitter.com/siryasirrr" target="_blank" rel="noopener"
+         class="text-xs text-[var(--color-base-500)] hover:text-[var(--color-base-200)] transition-colors font-mono">
+        Twitter
+      </a>
+      <a href="https://linkedin.com/in/siryasirrr" target="_blank" rel="noopener"
+         class="text-xs text-[var(--color-base-500)] hover:text-[var(--color-base-200)] transition-colors font-mono">
+        LinkedIn
+      </a>
+      <a href="mailto:sir@yaasir.dev"
+         class="ml-auto text-xs text-[var(--color-base-500)] hover:text-[var(--color-accent)] transition-colors font-mono">
+        sir@yaasir.dev
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const toggle  = document.getElementById('menu-toggle');
+  const overlay = document.getElementById('menu-overlay');
+  const closeBtn = document.getElementById('menu-close');
+  const ham     = document.getElementById('icon-ham');
+  const closeX  = document.getElementById('icon-close');
+
+  function openMenu() {
+    overlay!.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    toggle!.setAttribute('aria-expanded', 'true');
+    ham!.classList.add('hidden');
+    closeX!.classList.remove('hidden');
+    // Stagger animate links
+    overlay!.querySelectorAll('nav a').forEach((el, i) => {
+      (el as HTMLElement).style.transitionDelay = `${i * 60 + 50}ms`;
+    });
+  }
+
+  function closeMenu() {
+    overlay!.classList.remove('open');
+    document.body.style.overflow = '';
+    toggle!.setAttribute('aria-expanded', 'false');
+    ham!.classList.remove('hidden');
+    closeX!.classList.add('hidden');
+    overlay!.querySelectorAll('nav a').forEach((el) => {
+      (el as HTMLElement).style.transitionDelay = '0ms';
+    });
+  }
+
+  toggle!.addEventListener('click', openMenu);
+  closeBtn!.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+  // Close on nav link click
+  overlay!.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>
