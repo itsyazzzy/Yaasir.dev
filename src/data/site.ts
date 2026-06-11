@@ -3,56 +3,56 @@
 export const profile = {
   name: "Yasir Hassan",
   handle: "sirrryasir",
-  role: "Software Engineer",
+  role: "Solutions Architect",
   email: "sir@yaasir.dev",
   location: "Hargeisa",
   availability: "2 spots open",
   avatar: "/sir.png",
-  intro: "Software Engineer.\r\nAlways learning. Always building.",
-  current: "Currently focused on software engineering, developer tools, Astro, Next.js, and practical systems for local communities.",
+  intro: "Navigating the deep waters of full-stack architecture and AI-native systems. High-performance logic. Minimal visual noise.",
+  current: "Currently focused on building AI-driven tools, scalable systems, and social-impact ecosystems like Ogaal and Archon CLI.",
   links: [
     { label: "GitHub", href: "https://github.com/sirrryasir" },
-    { label: "LinkedIn", href: "https://linkedin.com/in/siryasirrr" },
+    { label: "LinkedIn", href: "https://linkedin.com/in/sirryasir" },
     { label: "Twitter / X", href: "https://twitter.com/siryasirrr" },
   ],
 };
 
 export const stack = [
   {
+    "name": "Go",
+    "category": "High Performance",
+    "description": "Go is used for building high-performance CLI tools and concurrent backend systems.",
+    "color": "#00ADD8"
+  },
+  {
+    "name": "TypeScript",
+    "category": "Full-Stack",
+    "description": "The primary language for building scalable web applications and professional GUIs.",
+    "color": "#3178C6"
+  },
+  {
+    "name": "Python",
+    "category": "AI & ML",
+    "description": "Python powers the AI reasoning and Machine Learning pipelines in my projects.",
+    "color": "#3776AB"
+  },
+  {
     "name": "Astro",
     "category": "Static Site Generator",
-    "description": "Astro powers the world's fastest websites, client-side web apps, and dynamic APIs.",
+    "description": "Astro powers the world's fastest websites, prioritizing performance and simplicity.",
     "color": "#FF5D01"
   },
   {
     "name": "Next.js",
     "category": "React Framework",
-    "description": "The React framework for building fast, full-stack web applications.",
+    "description": "The React framework for building enterprise-grade, full-stack applications.",
     "color": "#000000"
-  },
-  {
-    "name": "TypeScript",
-    "category": "Language",
-    "description": "TypeScript adds optional static typing to JavaScript.",
-    "color": "#3178C6"
-  },
-  {
-    "name": "Tailwind CSS",
-    "category": "CSS Framework",
-    "description": "A utility-first CSS framework for building custom UI designs.",
-    "color": "#38BDF9"
   },
   {
     "name": "PostgreSQL",
     "category": "Database",
-    "description": "Powerful, open source object-relational database system.",
+    "description": "Powerful, open source object-relational database for managing sensitive data.",
     "color": "#336791"
-  },
-  {
-    "name": "Bun",
-    "category": "Runtime",
-    "description": "Incredibly fast JavaScript runtime, bundler, and package manager.",
-    "color": "#FBF0DF"
   }
 ];
 
@@ -60,69 +60,72 @@ export const skills = [
   {
     "group": "Languages",
     "items": [
-      "JavaScript",
+      "Go",
       "TypeScript",
+      "Python",
       "SQL",
-      "HTML/CSS"
+      "Bash"
     ]
   },
   {
-    "group": "Frontend",
+    "group": "Frameworks",
     "items": [
-      "React",
       "Next.js",
-      "Tailwind CSS",
-      "Framer Motion"
+      "NestJS",
+      "Astro",
+      "FastAPI",
+      "Flask",
+      "React"
     ]
   },
   {
-    "group": "Backend",
+    "group": "Architecture",
     "items": [
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "PostgreSQL"
+      "System Design",
+      "AI/ML Pipelines",
+      "ETL & Automation",
+      "API Engineering",
+      "Database Modeling"
     ]
   },
   {
     "group": "Tools",
     "items": [
-      "Git",
+      "Arch Linux",
+      "Neovim (LSP-native)",
       "Docker",
-      "Photoshop",
-      "Illustrator",
-      "Figma",
-      "VS Code",
-      "Postman"
+      "Git",
+      "Bun",
+      "Prisma"
     ]
   }
 ];
 
 export const experience = [
   {
-    "title": "Graphic Designer",
-    "company": "Freelance",
-    "period": "2024 - Present",
-    "description": ""
+    "title": "Solutions Architect",
+    "company": "Independent Consultant",
+    "period": "Jan 2024 - Present",
+    "description": "Architected production-grade ETL frameworks and automated business processes for enterprise-level clients."
   },
   {
-    "title": "Software Engineer",
-    "company": "Freelance",
-    "period": "Present",
-    "description": ""
+    "title": "Mentor",
+    "company": "Ardaykaab Academy",
+    "period": "Jan 2026 - Present",
+    "description": "Instructing student cohorts in building production-ready architectures and scalable full-stack applications."
   }
 ];
 
 export const education = [
   {
-    "title": "Studying Graphic Design",
-    "institution": "Samewade Academy",
-    "period": "2024"
-  },
-  {
-    "title": "Studying Software Engineering",
+    "title": "Advanced Software Engineering",
     "institution": "Ardaykaab Academy",
     "period": "2025"
+  },
+  {
+    "title": "Graphic Design & UX",
+    "institution": "Samewade Academy",
+    "period": "2024"
   }
 ];
 
@@ -136,7 +139,7 @@ export const achievements = [
       "/achievements/xalkadoon-2.jpg",
       "/achievements/xalkadoon-3.jpg",
     ],
-    description: "Built Ogaal, a centralized water source reporting and monitoring platform for drought response and community water visibility.",
+    description: "Built Ogaal, a centralized water intelligence and early warning platform for drought monitoring and field coordination.",
   },
 ];
 
