@@ -1,7 +1,7 @@
 ---
 title: "Kaydify"
 description: "A free platform providing past papers, notes, and answers for students in Somaliland."
-date: 2026-01-15
+date: 2025-10-05
 tags: ["Next.js","TypeScript","Tailwind CSS","PostgreSQL"]
 featured: true
 image: "/images/kaydify.png"

@@ -1,9 +1,9 @@
 ---
 title: "EdoSkill360"
 description: "A freelance and task management platform focused on trust and verification, connecting skilled professionals with employers."
-date: 2026-02-03
+date: 2026-01-15
 tags: ["Next.js","Bun","Express.js","MongoDB","Tailwind CSS","Shadcn/UI"]
-featured: true
+featured: false
 image: "/images/edoskill360.svg"
 url: "https://edoskill360.vercel.app"
 github: ""

@@ -1,9 +1,9 @@
 ---
 title: "FormFaker"
 description: "A privacy-first browser extension that instantly fills forms with realistic, locale-aware data. Works 100% offline and supports 50+ locales."
-date: 2026-02-03
+date: 2026-01-29
 tags: ["JavaScript","Browser Extension API","Privacy-First"]
-featured: true
+featured: false
 image: "https://raw.githubusercontent.com/sirrryasir/formfaker/main/icons/logo.png"
 url: ""
 github: "https://github.com/sirrryasir/formfaker"

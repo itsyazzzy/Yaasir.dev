@@ -1,9 +1,9 @@
 ---
 title: "Agritech-AI"
 description: "An end-to-end Machine Learning pipeline for data-driven crop recommendation and agricultural insights."
-date: 2026-04-10
+date: 2026-04-20
 tags: ["Python","Scikit-learn","Flask","Next.js","Machine Learning"]
-featured: true
+featured: false
 image: "/images/agritech.svg"
 url: ""
 github: "https://github.com/sirrryasir/agritech-ai"

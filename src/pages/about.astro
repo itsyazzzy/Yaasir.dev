@@ -1,0 +1,98 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { profile, experience, education, achievements, skills } from '@/data/site';
+
+const title = `About — ${profile.name}`;
+const description = profile.current;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="px-8 mx-auto max-w-3xl pt-32 pb-24 space-y-24">
+    
+    <!-- Intro -->
+    <section>
+      <h1 class="font-display italic text-4xl sm:text-5xl text-[var(--color-text-heading)] mb-6">About</h1>
+      <div class="prose prose-invert prose-base prose-p:text-[var(--color-base-400)] max-w-none leading-relaxed">
+        <p class="text-lg text-[var(--color-base-300)] mb-4">{profile.intro}</p>
+        <p>{profile.current}</p>
+        <p>I specialize in building complex developer tools, automated ETL frameworks, and high-impact social ecosystems. My workflow is primarily Linux-based, utilizing Neovim and terminal-centric tools to maintain high efficiency and minimal distraction.</p>
+      </div>
+    </section>
+
+    <!-- Experience & Education Grid -->
+    <section class="grid sm:grid-cols-2 gap-12">
+      <!-- Experience -->
+      <div>
+        <h2 class="font-display italic text-2xl text-[var(--color-text-heading)] mb-6">Experience</h2>
+        <div class="relative pl-4 border-l border-[var(--color-base-800)] space-y-8">
+          {experience.map(exp => (
+            <div class="relative">
+              <div class="absolute -left-[1.3rem] top-1 size-2 rounded-full bg-[var(--color-base-700)] ring-2 ring-[var(--color-base-950)]"></div>
+              <div class="flex items-start gap-2 flex-wrap mb-1">
+                <p class="text-sm font-medium text-[var(--color-text-heading)]">{exp.title}</p>
+                <span class="text-xs font-mono rounded-full px-2 py-0.5 bg-[var(--color-accent)]/10 text-[var(--color-accent)] ring-1 ring-[var(--color-accent)]/20">
+                  {exp.period}
+                </span>
+              </div>
+              <p class="text-xs font-mono text-[var(--color-base-600)] mb-2">{exp.company}</p>
+              <p class="text-sm text-[var(--color-base-500)] leading-relaxed">{exp.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div>
+        <h2 class="font-display italic text-2xl text-[var(--color-text-heading)] mb-6">Education</h2>
+        <div class="space-y-6">
+          {education.map(edu => (
+            <div class="flex flex-col gap-1 border-b border-[var(--color-base-900)] pb-4 last:border-0">
+              <div class="flex justify-between items-baseline gap-4">
+                <p class="text-sm font-medium text-[var(--color-text-heading)]">{edu.title}</p>
+                <span class="text-xs font-mono text-[var(--color-base-600)] shrink-0">{edu.period}</span>
+              </div>
+              <p class="text-xs font-mono text-[var(--color-base-600)]">{edu.institution}</p>
+            </div>
+          ))}
+        </div>
+
+        <h2 class="font-display italic text-2xl text-[var(--color-text-heading)] mt-12 mb-6">Achievements</h2>
+        <div class="space-y-4">
+          {achievements.map(a => (
+             <div class="p-4 rounded-xl border border-[var(--color-base-800)] bg-[var(--color-base-900)]/30">
+               <div class="flex items-start gap-3">
+                 <span class="text-xl">🏆</span>
+                 <div>
+                   <p class="text-sm font-medium text-[var(--color-text-heading)]">{a.title}</p>
+                   <p class="text-xs font-mono text-[var(--color-base-500)] mt-1">{a.organizer} — {a.date}</p>
+                   <p class="text-xs text-[var(--color-base-400)] mt-2 leading-relaxed">{a.description}</p>
+                 </div>
+               </div>
+             </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Breakdown -->
+    <section>
+      <h2 class="font-display italic text-2xl text-[var(--color-text-heading)] mb-8">Technical Arsenal</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {skills.map(skillGroup => (
+          <div>
+            <h3 class="text-sm font-medium text-[var(--color-base-300)] mb-3">{skillGroup.group}</h3>
+            <ul class="space-y-2">
+              {skillGroup.items.map(item => (
+                <li class="text-sm font-mono text-[var(--color-base-500)] flex items-center gap-2">
+                  <span class="size-1 rounded-full bg-[var(--color-base-800)]"></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>

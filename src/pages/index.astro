@@ -9,10 +9,12 @@ import SectionHeader from '@/components/SectionHeader.astro';
 import { profile, stack, experience, education, achievements } from '@/data/site';
 
 const allProjects = (await getCollection('projects'))
+  .filter(project => project.data.featured && project.data.draft !== true)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 4);
 
 const allPosts = (await getCollection('blog'))
+  .filter(post => post.data.draft !== true)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 2);
 
@@ -60,7 +62,7 @@ const featuredStack = stack.slice(0, 6);
 
     <!-- Stack marquee section -->
     <section>
-      <SectionHeader title="Stack" href="/stack/" linkLabel="Full stack" />
+      <SectionHeader title="Stack" href="/about/" linkLabel="See details" />
       <div class="relative overflow-hidden">
         <!-- Fade edges -->
         <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-20
@@ -77,74 +79,6 @@ const featuredStack = stack.slice(0, 6);
               color={tool.color}
               rotate={i % 2 === 0 ? 'cw' : 'ccw'}
             />
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Experience + Education (Muuse style — timeline list) -->
-    <section class="grid sm:grid-cols-2 gap-12">
-      <!-- Experience -->
-      <div>
-        <h2 class="font-display italic text-2xl text-[var(--color-text-heading)] mb-6">Experience</h2>
-        <div class="relative pl-4 border-l border-[var(--color-base-800)] space-y-6">
-          {experience.map(exp => (
-            <div class="relative">
-              <div class="absolute -left-[1.3rem] top-1 size-2 rounded-full bg-[var(--color-base-700)] ring-2 ring-[var(--color-base-950)]"></div>
-              <div class="flex items-start gap-2 flex-wrap">
-                <p class="text-sm font-medium text-[var(--color-text-heading)]">{exp.title}</p>
-                <span class="text-xs font-mono rounded-full px-2 py-0.5
-                             bg-[var(--color-accent)]/10 text-[var(--color-accent)]
-                             ring-1 ring-[var(--color-accent)]/20">
-                  {exp.period.includes('Present') ? 'Present' : exp.period}
-                </span>
-              </div>
-              <p class="text-xs font-mono text-[var(--color-base-600)] mt-0.5">{exp.company}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <!-- Education + Achievements -->
-      <div class="space-y-10">
-        <div>
-          <h2 class="font-display italic text-2xl text-[var(--color-text-heading)] mb-6">Education</h2>
-          <div class="space-y-4">
-            {education.map(edu => (
-              <div class="flex items-baseline justify-between gap-4">
-                <div>
-                  <p class="text-sm font-medium text-[var(--color-text-heading)]">{edu.title}</p>
-                  <p class="text-xs font-mono text-[var(--color-base-600)] mt-0.5">{edu.institution}</p>
-                </div>
-                <span class="text-xs font-mono text-[var(--color-base-600)] shrink-0">{edu.period}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <h2 class="font-display italic text-2xl text-[var(--color-text-heading)] mb-6">Achievements</h2>
-          {achievements.map(a => (
-            <div class="gradient-card rounded-2xl overflow-hidden ring-1 ring-[var(--color-base-800)]">
-              <!-- Hackathon photos -->
-              {a.images && a.images.length > 0 && (
-                <div class="grid grid-cols-3 gap-0.5">
-                  {a.images.map((img: string) => (
-                    <div class="aspect-video overflow-hidden bg-[var(--color-base-900)]">
-                      <img src={img} alt="Hackathon photo" class="w-full h-full object-cover" />
-                    </div>
-                  ))}
-                </div>
-              )}
-              <div class="p-4 flex items-start gap-2">
-                <span class="text-lg mt-0.5">🏆</span>
-                <div>
-                  <p class="text-sm font-medium text-[var(--color-base-100)]">{a.title}</p>
-                  <p class="text-xs font-mono text-[var(--color-base-600)] mt-0.5">{a.organizer}</p>
-                  <p class="text-xs text-[var(--color-base-500)] mt-2 leading-relaxed">{a.description}</p>
-                </div>
-              </div>
-            </div>
           ))}
         </div>
       </div>

@@ -1,7 +1,7 @@
 ---
 title: "Archon CLI"
 description: "A Socratic AI Software Architect CLI for evaluated, constraint-driven systems engineering."
-date: 2026-05-15
+date: 2026-05-27
 tags: ["Go","AI","CLI","System Design"]
 featured: true
 image: "/images/archon.svg"

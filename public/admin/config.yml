@@ -1,0 +1,58 @@
+backend:
+  name: github
+  repo: itsyazzzy/Yaasir.dev # Bedelkan haddii repo-gaagu magac kale leeyahay (username/repo)
+  branch: main # Hubi inuu main yahay (mida aad Astro ka deploy-garaynayso)
+
+# Halkan ayay sawirada aad dashboard-ka geliso tegayaan
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+# Local Backend (Si aad localhost ugu tijaabiso)
+local_backend: true
+
+# Customization
+logo_url: "/sirc.png"
+
+collections:
+  # ==========================================
+  # 1. PROJECTS COLLECTION
+  # ==========================================
+  - name: "projects"
+    label: "Projects"
+    label_singular: "Project"
+    folder: "src/content/projects"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    preview_path: "projects/{{slug}}"
+    fields:
+      - { label: "Project Title", name: "title", widget: "string" }
+      - { label: "Short Description", name: "description", widget: "text", hint: "Summary-ga ka muuqanaya kaadhka." }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Cover Image", name: "image", widget: "image", required: false, hint: "Sawirka weyn ee mashruuca." }
+      - { label: "Tags / Technologies", name: "tags", widget: "list", hint: "Geli technologies-ka sida: React, Go, Astro." }
+      - { label: "Is Featured?", name: "featured", widget: "boolean", default: false, hint: "Haddii ay HAA tahay wuxuu kasoo dhex muuqan doonaa bogga hore." }
+      - { label: "Live URL", name: "url", widget: "string", required: false, hint: "Linkiga live-ka ah (e.g. https://domain.com)" }
+      - { label: "GitHub Repo", name: "github", widget: "string", required: false }
+      - { label: "Draft / Hidden", name: "draft", widget: "boolean", default: false, hint: "Haddii aad saarto sax, dadku arki maayaan (Waa xaaladdii Draft-ka)." }
+      - { label: "Body Content (Markdown)", name: "body", widget: "markdown" }
+
+  # ==========================================
+  # 2. BLOGS COLLECTION
+  # ==========================================
+  - name: "blog"
+    label: "Blog Posts"
+    label_singular: "Blog Post"
+    folder: "src/content/blog"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    preview_path: "blog/{{slug}}"
+    fields:
+      - { label: "Post Title", name: "title", widget: "string" }
+      - { label: "Excerpt / Description", name: "description", widget: "text" }
+      - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Read Time", name: "readTime", widget: "string", hint: "E.g. '5 min read'" }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Draft / Hidden", name: "draft", widget: "boolean", default: false, hint: "Haddii aad saarto sax, dadku arki maayaan." }
+      - { label: "Body Content", name: "body", widget: "markdown" }

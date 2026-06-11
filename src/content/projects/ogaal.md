@@ -1,7 +1,7 @@
 ---
 title: "Ogaal"
 description: "A community-powered water monitoring platform designed to address recurring droughts and water scarcity by providing real-time, verified water data."
-date: 2026-02-03
+date: 2025-12-20
 tags: ["Next.js","React Native","TypeScript","Tailwind CSS","PostgreSQL"]
 featured: true
 image: "/images/ogaal.svg"

@@ -1,9 +1,9 @@
 ---
 title: "Pomora"
 description: "A unified productivity ecosystem combining a sophisticated Discord Bot and a synchronized Next.js Web Dashboard. Features real-time voice channel tracking, gamified focus sessions, and a robust hybrid database architecture."
-date: 2026-02-03
+date: 2026-02-04
 tags: ["Bun","PosgreSQL","Next.js","Discord.js"]
-featured: true
+featured: false
 image: "https://raw.githubusercontent.com/sirrryasir/Pomora/main/web/public/images/logo-bg.png"
 url: "https://pomora.yaasir.dev/"
 github: "https://github.com/sirrryasir/Pomora"

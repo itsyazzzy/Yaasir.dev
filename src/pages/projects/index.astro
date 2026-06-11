@@ -4,6 +4,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProjectCard from '@/components/ProjectCard.astro';
 
 const projects = (await getCollection('projects'))
+  .filter(project => project.data.draft !== true)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 

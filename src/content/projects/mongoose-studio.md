@@ -1,7 +1,7 @@
 ---
 title: "Mongoose Studio"
 description: "The instant GUI for your Mongoose models. Visualize schemas and explore data without writing a single line of admin code."
-date: 2026-02-03
+date: 2026-01-31
 tags: ["React","Next.js","MongoDB","Mongoose","CLI"]
 featured: true
 image: "https://raw.githubusercontent.com/sirrryasir/mongoose-studio/main/media/mongoose-studio.png"
